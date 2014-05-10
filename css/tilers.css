@@ -1,0 +1,60 @@
+@import url('normalize.css');
+
+body {
+    background-color: #7F737B;
+    color: white;
+}
+
+.header {
+    height: 100px;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    border-bottom: solid 4px #FF68C7;
+    vertical-align: bottom;
+}
+
+h1 {
+    /*background: #FF68C7;*/
+    color: #ededed;
+    text-align:center;
+    padding:0;
+    margin:0;
+}
+
+footer {
+    height:100px;
+}
+
+#wrapper {
+    width: 300px;
+    max-width: 80%;
+    display:block;
+    position:relative;
+    margin:auto;
+}
+
+/*#wrapper:before {
+    content: "";
+    display: block;
+    padding-top: 200%; 
+}*/
+
+#flyersDiv {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    margin-top:15%;
+    padding:0;
+    font-family: Arial, serif;
+    background: #CCB8C4;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.2em;
+    color: #333;
+    border-radius: 2%;
+    -webkit-font-smoothing: antialiased;
+
+}

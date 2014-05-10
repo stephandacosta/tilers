@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+
+<title>VideoGenie</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/jquery-ui-1.8.2.smoothness-limited.min.v1.js"></script>
+  <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/jquery.cookie.v1.js"></script>
+  <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/jquery.placeholder.min.js"></script>
+  <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
+      <script src="js/masonry.pkgd.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/tilers.css" />
+  <!-- <link rel="stylesheet/less" type="text/css" href="css/tilers.less" /> -->
+  <noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
+    <script type='text/javascript'>
+      var user_state = 'Example Module Loaded';
+      var last_user_state = user_state;
+      var lang = "en";
+      var isDebug = "true";
+      var enableCommunications = "false";
+      var page_protocol = 'http';
+      var vg_cdn_base_url = 'http://akdl1.videogenie.com/';
+      var vg_base_url = 'http://qaapp.videogenie.com/';
+      var staticUrl = 'http://vg-qaassets.s3.amazonaws.com/static/';
+      var client_ip = '123.123.123.123';
+      var cookieDomain = 'videogenie.com';
+      var client_name = "Example";
+      var campaign_title = "Example Campaign";
+      var prompt = "Share Your Adventures with Us! #FindingWinter";
+      var fbAppId = "198041457002714";
+      var fbPageId = "";
+      var fbPageUrl = "";
+      var fbIsLiked = "";
+      var enableShare = true;
+      //var showContributorNames = true;
+      var shareTitle = "Celebrate winter and the lengths we go to experience it";
+      var shareDesc = "#FindingWinter with Mountain Hardwear";
+      var enableJSLog = true;
+      //var moduleURL = "http://qaapp.videogenie.com/c/shb/199b1/finding-winter";
+      var moduleURL = window.location.href;
+      var moduleShortURL = window.location.href;
+      var moduleUid = "shb_24830526-c850-435f-9f7a-54e10f11b9b1";
+      var campaignUid = "cm_6a68a154-b4f0-4b29-97e2-1cd8a6541ada";
+      var campaignInfo = {};
+      
+//      jwplayer.key="w/+pa/RvlwCSJvO/OULeM0gXZe3+L5eEluXgTA==";
+
+      // player settings
+      var ctaLabel = '';
+      var ctaUrl = '';
+      var enableFbLikes = true;
+      var enableModeration = true;
+      var enableVote = true;
+      var fbAppId = '194216667401359';
+      var useInnerLogo = true;
+      var defer = false;
+      var sharePluginEnabled = true;
+      
+      $(document).ready(function(){
+ //       ga_events.moduleLoaded('shb', 'site');
+      });
+    </script>
+
+   <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/component.js"></script>
+   <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/modules.v1.js"></script>
+    <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/sentimenthub.v1.js"></script>
+
+    <script type="text/javascript" src="js/jquery.mobile.vmousecustom.min.js"></script>
+<!--     // <script type="text/javascript" charset="utf-8" src="//vg-qaassets.s3.amazonaws.com/static/global/js/less-1.4.1.min.js"></script> -->
+
+    <script src="js/tilers.js"></script>
+
+                <script src="js/masonry.pkgd.js"></script>
+    <script>
+        sentimentHub = new VGSentimentHub(campaignUid, {
+            VGVideo:    { count: 25 },
+            Photo:      { count: 20 },
+            Twitter:    { count: 20 },
+            Instagram:  { count: 20 },
+            Youtube:    { count: 30 }
+        });
+    
+        $(function(){
+          Tilers.init($('#tilersDiv'));
+
+          var container = document.querySelector('#container');
+          var msnry = new Masonry( container, {
+            // options
+            columnWidth: 200,
+            itemSelector: '.item'
+          });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="header">
+      <h1> Tilers </h1>
+    </div>
+      <div id="wrapper" >
+        <div id="tilersDiv" class="tilers">
+        </div>
+      </div>
+
+    <footer>
+    </footer>
+
+</body>
+</html>
