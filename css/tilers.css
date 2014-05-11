@@ -1,6 +1,13 @@
 @import url('normalize.css');
 
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
+
     background-color: #7F737B;
     color: white;
 }
@@ -26,35 +33,49 @@ footer {
     height:100px;
 }
 
-#wrapper {
-    width: 300px;
+#container {
+    width: 700px;
     max-width: 80%;
     display:block;
     position:relative;
     margin:auto;
 }
 
-/*#wrapper:before {
-    content: "";
-    display: block;
-    padding-top: 200%; 
-}*/
-
-#flyersDiv {
-    width: 100%;
-    height: 100%;
-    position:absolute;
-    top:0;
-    left:0;
-    margin-top:15%;
-    padding:0;
-    font-family: Arial, serif;
-    background: #CCB8C4;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 1.2em;
-    color: #333;
-    border-radius: 2%;
-    -webkit-font-smoothing: antialiased;
-
+.item
+.imgWrapper {
+  float: left;
+  width: 100px;
+  height: 100px;
 }
+
+.imgWrapper {
+  width: 100px;
+  height: 100px;
+      background-position: center center;
+    background-size: cover;
+    background-color: black;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+  -webkit-transition: width 0.4s, height 0.4s;
+     -moz-transition: width 0.4s, height 0.4s;
+       -o-transition: width 0.4s, height 0.4s;
+          transition: width 0.4s, height 0.4s;
+}
+
+.item:hover .item-content {
+  border-color: red;
+  cursor: pointer;
+}
+
+.item.is-expanded,
+.item.is-expanded .imgWrapper {
+  width: 200px;
+  height: 200px;
+}
+
+.item.is-expanded {
+  z-index: 2;
+}
+
+

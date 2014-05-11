@@ -11,6 +11,8 @@
   <script src="js/jquery-ui-1.8.23.custom.min.js"></script>
       <script src="js/masonry.pkgd.min.js"></script>
 
+      <script src="js/masonry.classie.js"></script>
+
   <link rel="stylesheet" type="text/css" href="css/tilers.css" />
   <!-- <link rel="stylesheet/less" type="text/css" href="css/tilers.less" /> -->
   <noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
@@ -85,12 +87,6 @@
         $(function(){
           Tilers.init($('#tilersDiv'));
 
-          var container = document.querySelector('#container');
-          var msnry = new Masonry( container, {
-            // options
-            columnWidth: 200,
-            itemSelector: '.item'
-          });
         });
     </script>
 </head>

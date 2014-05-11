@@ -11,6 +11,8 @@
 var Tilers = {
 
   $container: $("body"),
+  imgBaseWidth:100,
+ 
 
   init: function($container){
     console.log('creating flying images');
@@ -60,35 +62,25 @@ var Tilers = {
     var $msnryContainer = $('<div id="container"</div>');
     Tilers.$container.append($msnryContainer);
 
-    // add list to container
-    var container = document.querySelector('#container');
-    var msnry = new Masonry( container, {
-      // options
-      columnWidth: 500,
-      itemSelector: '.item'
-    });
+
 
 
     for (var i = 0 ; i < data.length ; i++){
 
-      var $Item = $('<div class="item"></div>');
+      var $Item = $('<div class="item"></div>')
 
       // add image to list item
       var photo = data[i].image || data[i].thumb || data[i].profilePic;
-      var $img = $("<img />").attr({src: photo});
-      // var $imgWrapper = $('<div class="imgWrapper">')
-      //     .css('background-image','url(' + photo + ')');
-      // $imgWrapper.append($img);
-      // $Item.append($imgWrapper);
-      $Item.append($img); 
 
-
+      var $imgWrapper = $('<div class="imgWrapper">')
+          .css('background-image','url(' + photo + ')');
+      $Item.append($imgWrapper);
 
       // // add contributor name to list item
-      // $listItem.append($('<h4>' + data[i].contribName + '</h4>'));
+      // $Item.append($('<h4>' + data[i].contribName + '</h4>'));
 
       // // add text to list item
-      // $listItem.append($('<div class="info text"></div>')
+      // $Item.append($('<div class="info text"></div>')
       // .append(data[i].textHtml));
 
       // add list item to unsorted list
@@ -96,13 +88,31 @@ var Tilers = {
 
     }
 
-
-    var elements = document.getElementsByClassName('item');
-      msnry.appended( elements );
-      msnry.layout();
+    // add list to container
+    var container = document.querySelector('#container');
+    var msnry = new Masonry( container, {
+      // options
+      columnWidth: 50,
+      itemSelector: '.item'
+    });
+    // var elements = document.getElementsByClassName('item');
+    //   msnry.appended( elements );
+    //   msnry.layout();
 
     // $container.masonry( 'appended', elements );
 
+    eventie.bind( container, 'click', function( event ) {
+    // don't proceed if item content was not clicked on
+    var target = event.target;
+    if ( !classie.has( target, 'imgWrapper' )  ) {
+      return;
+    }
+    var itemElem = target.parentNode;
+    classie.toggleClass( itemElem, 'is-expanded' );
+
+    msnry.layout();
+  });
+  
 
     console.log('ok');
 
