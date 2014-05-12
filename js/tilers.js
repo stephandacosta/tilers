@@ -65,6 +65,15 @@ var Tilers = {
     // console.log(item);
     var $Item = $('<div class="item"></div>');
 
+    var itemType = {
+      VGVideo: 'vid',
+      Photo: 'pic',
+      Twitter: 'pic',
+      Instagram: 'pic',
+      Youtube: 'vid'
+    };
+    
+    $Item.addClass(itemType[item.network]);
     // add image to list item
     var photo = item.image || item.thumb || item.profilePic;
     var $imgWrapper = $('<div class="imgWrapper">')
@@ -74,9 +83,18 @@ var Tilers = {
     // add contributor name to list item
     $Item.append($('<h4 class="caption">' + item.network + '</h4>'));
 
-    // // add text to list item
-    // $Item.append($('<div class="info text"></div>')
-    // .append(item.textHtml));
+    // add text to list item
+    $Item.append($('<div class="info text"></div>')
+    .append(item.textHtml));
+    console.log('length: ', item.textHtml.length);
+    console.log('text:', item.textHtml);
+    if(item.textHtml.length > 180){
+      console.log('class added');
+      $Item.addClass('largeText');
+    }
+
+        // add video placeholder to list item
+    $Item.append($('<div class="viddiv text"></div>'));
 
         // add list item to unsorted list
     // this can be optimized by appending in batch
@@ -84,7 +102,7 @@ var Tilers = {
     // $('#container').msnry( 'appended', $Item.get());
     $('#container').append($Item);
 
-        Tilers.msnry.appended($Item.get());
+    Tilers.msnry.appended($Item.get());
 
        
     Tilers.enableHovering($Item);
