@@ -8,6 +8,9 @@ var Tilers = {
   init: function($container){
     console.log('creating flying images');
     Tilers.$container = $container;
+    var $msnryContainer = $('<div id="container"</div>');
+    Tilers.$container.append($msnryContainer);
+    Tilers.initMasonry();
     sentimentHub.on('Data', Tilers.onData);
     sentimentHub.on('Done', Tilers.onDataDone);
     sentimentHub.fetch();
@@ -15,12 +18,28 @@ var Tilers = {
 
   // Triggered when data for a particular network is available
   onData: function(network, data){
+    $.each(data, function(key, item){
+      Tilers.drawItem(network, item);
+
+      // let the library know we have used this item
+      sentimentHub.markDataItemAsUsed(item);
+
+      // Tilers.playIfShared(item);
+    });
+    Tilers.msnry.layout();
+
+
+
 
   },
 
+
   // Triggered when we are done fetching data
   onDataDone: function(data){
-    Tilers.drawTilers(data);
+    // Tilers.drawTilers(data);
+    // Tilers.initMasonry();
+    // Tilers.enableHovering($('.item'));
+    // Tilers.enableClick($('.item'));
   },
 
   playIfShared: function(item){
@@ -42,42 +61,82 @@ var Tilers = {
   },
 
   // draw the items as desired
-  drawItem: function(network, item){
-    console.log(item);
+  drawItem: function(network, item, msnry){
+    // console.log(item);
+    var $Item = $('<div class="item"></div>');
+
+    // add image to list item
+    var photo = item.image || item.thumb || item.profilePic;
+    var $imgWrapper = $('<div class="imgWrapper">')
+    .css('background-image','url(' + photo + ')');
+    $Item.append($imgWrapper);
+
+    // add contributor name to list item
+    $Item.append($('<h4 class="caption">' + item.network + '</h4>'));
+
+    // // add text to list item
+    // $Item.append($('<div class="info text"></div>')
+    // .append(item.textHtml));
+
+        // add list item to unsorted list
+    // this can be optimized by appending in batch
+    // var items = document.getElementsByClassName($Items.get());
+    // $('#container').msnry( 'appended', $Item.get());
+    $('#container').append($Item);
+
+        Tilers.msnry.appended($Item.get());
+
+       
+    Tilers.enableHovering($Item);
+
+    Tilers.enableClick($Item);
+
+
+
   },
 
 
   drawTilers : function (data){
-    console.log('Tilers function');
+    // console.log('Tilers function');
 
-    console.log(data[0]);
-    var $msnryContainer = $('<div id="container"</div>');
-    Tilers.$container.append($msnryContainer);
+    // console.log(data[0]);
+    // var $msnryContainer = $('<div id="container"</div>');
+    // Tilers.$container.append($msnryContainer);
 
-    for (var i = 0 ; i < data.length ; i++){
-      var $Item = $('<div class="item"></div>');
+    // for (var i = 0 ; i < data.length ; i++){
+    //   var $Item = $('<div class="item"></div>');
 
-      // add image to list item
-      var photo = data[i].image || data[i].thumb || data[i].profilePic;
-      var $imgWrapper = $('<div class="imgWrapper">')
-      .css('background-image','url(' + photo + ')');
-      $Item.append($imgWrapper);
+    //   // add image to list item
+    //   var photo = data[i].image || data[i].thumb || data[i].profilePic;
+    //   var $imgWrapper = $('<div class="imgWrapper">')
+    //   .css('background-image','url(' + photo + ')');
+    //   $Item.append($imgWrapper);
 
-      // add contributor name to list item
-      $Item.append($('<h4 class="caption">' + data[i].network + '</h4>'));
+    //   // add contributor name to list item
+    //   $Item.append($('<h4 class="caption">' + data[i].network + '</h4>'));
 
-      // // add text to list item
-      // $Item.append($('<div class="info text"></div>')
-      // .append(data[i].textHtml));
+    //   // // add text to list item
+    //   // $Item.append($('<div class="info text"></div>')
+    //   // .append(data[i].textHtml));
 
-      // add list item to unsorted list
-      $msnryContainer.append($Item);
 
-    }
+    //   // add list item to unsorted list
+    //   $msnryContainer.append($Item);
 
+    //   // Tilers.enableHovering($Item);
+
+    //   // Tilers.enableClick($Item);
+
+    // }
+
+
+  },
+
+  initMasonry: function(){
+    console.log('initiated');
     // add list to container
     var container = document.querySelector('#container');
-    var msnry = new Masonry( container, {
+    Tilers.msnry = new Masonry( container, {
       // options
       // columnWidth: 100,
       itemSelector: '.item',
@@ -86,29 +145,28 @@ var Tilers = {
       isFitWidth: true
 
     });
+            console.log('log1',Tilers.msnry);
+  },
 
-    $('.item').mouseenter(function(element){
-      // console.log(element);
+
+  enableHovering : function($elem){
+    $elem.mouseenter(function(){
       $(this).addClass('featured');
-      // msnry.layout(); //uncomment to get layout recalculated
+      // Tilers.msnry.layout(); //uncomment to get layout recalculated
     });
-
-    $('.item').mouseleave(function(element){
+    $elem.mouseleave(function(){
       $(this).removeClass('featured');
-      // msnry.layout();  //uncomment to get layout recalculated
+      // Tilers.msnry.layout();  //uncomment to get layout recalculated
     });
+  },
 
-
-    eventie.bind( container, 'click', function( event ) {
-      var target = event.target;
-      if ( !classie.has( target, 'imgWrapper' ) && !classie.has( target, 'caption' ) ) {
-        return;
-      }
-      var itemElem = target.parentNode;
-      classie.toggleClass( itemElem, 'is-expanded' );
-      msnry.layout();
+  enableClick : function ($elem){
+    $elem.click( function() {
+      $(this).toggleClass('is-expanded');
+      Tilers.msnry.layout();
+      // console.log('probably layedout');
     });
-
   }
+
 
 };
