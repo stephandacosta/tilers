@@ -1,0 +1,200 @@
+@import url('normalize.css');
+
+
+// Set-up of item sizes
+@baseWidth: 200px;
+@baseHeight: 200px;
+@mobile_baseWidth: 75px;
+@mobile_baseHeight: 75px;
+// @caption_size:
+
+  .xlarge{
+      width: @baseWidth*3;
+      height: @baseHeight*3;
+      @media only screen and (max-width: 500px) {
+          width: @mobile_baseWidth*3;
+          height: @mobile_baseHeight*3;
+      }
+  }
+
+  .large {
+      width: @baseWidth*1.5;
+      height: @baseHeight*1.5;
+      @media only screen and (max-width: 500px) {
+          width: @mobile_baseWidth*2;
+          height: @mobile_baseHeight*2;
+      }
+  }
+
+  .normal {
+      width: @baseWidth;
+      height: @baseHeight;
+      @media only screen and (max-width: 500px) {
+          width: @mobile_baseWidth;
+          height: @mobile_baseHeight;
+      }
+  }
+
+  .small {
+      width: @baseWidth/2;
+      height: @baseHeight/2;
+      @media only screen and (max-width: 500px) {
+          width: @mobile_baseWidth/2;
+          height: @mobile_baseHeight/2;
+      }
+  }
+
+
+// @media only screen and (max-width: 500px) {
+//   .xlarge{
+//       width: @mobile_baseWidth*3;
+//       height: @mobile_baseHeight*3;
+//   }
+
+//   .large {
+//       width: @mobile_baseWidth*2;
+//       height: @mobile_baseHeight*2;
+//   }
+
+//   .normal {
+//       width: @mobile_baseWidth;
+//       height: @mobile_baseHeight;
+//   }
+
+//   .small {
+//       width: @mobile_baseWidth/2;
+//       height: @mobile_baseHeight/2;
+//   }
+// }
+
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+
+    background-color: #7F737B;
+    color: white;
+}
+
+.header {
+    height: 100px;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    border-bottom: solid 4px #FF68C7;
+    vertical-align: bottom;
+}
+
+h1 {
+    /*background: #FF68C7;*/
+    color: #ededed;
+    text-align:center;
+    padding:0;
+    margin:0;
+}
+
+footer {
+    height:100px;
+}
+
+#container {
+    width: 100%;
+    height: 80%;
+    // max-width: 80%;
+    display:block;
+    position:relative;
+    margin:auto;
+}
+
+
+.item {
+    float: left;
+    background-color: #CCB8C4;
+    border: solid 2px whitesmoke;
+    border-radius: 12px;
+    margin-bottom: 3px;
+    .normal();
+        .imgWrapper {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto auto auto;
+        background-position: center center;
+        background-size: cover;
+        background-color: black;
+        opacity: 0.85;
+        border: 2px solid #D8D0D0;
+        // border-color: hsla(0, 0%, 0%, 0.5);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        -webkit-transition: width 0.4s, height 0.4s;
+           -moz-transition: width 0.4s, height 0.4s;
+             -o-transition: width 0.4s, height 0.4s;
+                transition: width 0.4s, height 0.4s;
+        }
+        h4 {
+          display:none;
+          height: 15%;
+          width: 100%;
+          color: #666;
+          font-family: Arial, serif;
+          font-weight: bold;
+          margin: 0 auto 0 auto;
+          padding-left: 5%;
+          padding-top: 2%;
+          background-color: white;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          // transition-delay: 1s;
+          // -webkit-transition-delay: 1s;
+          // -moz-transition-delay: 1s;
+          // -o-transition-delay: 1s;
+          // -webkit-transition: display 0.1s;
+          //    -moz-transition: display 0.1s;
+          //      -o-transition: display 0.1s;
+          //         transition: display 0.1s;
+        }
+    &:hover {
+        border: solid 4px #FF68C7;
+        // border-color: #FF68C7;
+        cursor: pointer;
+        .imgWrapper {
+          height: 85%;
+          opacity: 1;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        h4 {
+          display:block;
+        }
+    }
+}
+
+.item.featured {
+  .large();
+  z-index:3;
+}
+
+.item.is-expanded {
+  .xlarge();
+  z-index: 2;
+}
+
+@media only screen and (max-width: 400px) {
+
+
+  #wrapper{
+    margin-top: 100px; 
+    margin-bottom:100px;
+  }
+
+
+
+
+
+}

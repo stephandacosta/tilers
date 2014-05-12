@@ -1,12 +1,3 @@
-/*
-<div id="container">
-  <div class="item">...</div>
-  <div class="item w2">...</div>
-  <div class="item">...</div>
-  ...
-</div>
-*/
-
 
 var Tilers = {
 
@@ -58,26 +49,22 @@ var Tilers = {
 
   drawTilers : function (data){
     console.log('Tilers function');
-    
+
+    console.log(data[0]);
     var $msnryContainer = $('<div id="container"</div>');
     Tilers.$container.append($msnryContainer);
 
-
-
-
     for (var i = 0 ; i < data.length ; i++){
-
-      var $Item = $('<div class="item"></div>')
+      var $Item = $('<div class="item"></div>');
 
       // add image to list item
       var photo = data[i].image || data[i].thumb || data[i].profilePic;
-
       var $imgWrapper = $('<div class="imgWrapper">')
-          .css('background-image','url(' + photo + ')');
+      .css('background-image','url(' + photo + ')');
       $Item.append($imgWrapper);
 
-      // // add contributor name to list item
-      // $Item.append($('<h4>' + data[i].contribName + '</h4>'));
+      // add contributor name to list item
+      $Item.append($('<h4 class="caption">' + data[i].network + '</h4>'));
 
       // // add text to list item
       // $Item.append($('<div class="info text"></div>')
@@ -92,32 +79,36 @@ var Tilers = {
     var container = document.querySelector('#container');
     var msnry = new Masonry( container, {
       // options
-      columnWidth: 50,
-      itemSelector: '.item'
-    });
-    // var elements = document.getElementsByClassName('item');
-    //   msnry.appended( elements );
-    //   msnry.layout();
+      // columnWidth: 100,
+      itemSelector: '.item',
+      gutter: 2,
+      transitionDuration: '0.5s',
+      isFitWidth: true
 
-    // $container.masonry( 'appended', elements );
+    });
+
+    $('.item').mouseenter(function(element){
+      // console.log(element);
+      $(this).addClass('featured');
+      // msnry.layout(); //uncomment to get layout recalculated
+    });
+
+    $('.item').mouseleave(function(element){
+      $(this).removeClass('featured');
+      // msnry.layout();  //uncomment to get layout recalculated
+    });
+
 
     eventie.bind( container, 'click', function( event ) {
-    // don't proceed if item content was not clicked on
-    var target = event.target;
-    if ( !classie.has( target, 'imgWrapper' )  ) {
-      return;
-    }
-    var itemElem = target.parentNode;
-    classie.toggleClass( itemElem, 'is-expanded' );
-
-    msnry.layout();
-  });
-  
-
-    console.log('ok');
+      var target = event.target;
+      if ( !classie.has( target, 'imgWrapper' ) && !classie.has( target, 'caption' ) ) {
+        return;
+      }
+      var itemElem = target.parentNode;
+      classie.toggleClass( itemElem, 'is-expanded' );
+      msnry.layout();
+    });
 
   }
-
-
 
 };
